@@ -17,7 +17,7 @@ import re            #
 import wafw00f       #####################
 from urlparse import urlparse, parse_qs  #
 from HTMLParser import HTMLParser        #
-from optparse import OptionParser        #              
+from optparse import OptionParser        #                     
 ##########################################
 #
 #Core compaXSS
@@ -121,13 +121,14 @@ def main():
         exit("Algo salio mal.\033[91m :(\033[0m " "\nEjemplo: python compaxss.py --url http://victima.com/?parametro=" + keyword + "\n")
     global URL
     URL = options.url
-    url_to_waf = str(raw_input("Especifique el dominio para la deteccion de WAF: "))
     
+    print "\n\033[1;33mObjetivo:\033[94m " + URL 
+    url_to_waf = str(raw_input("Especifique el dominio para la deteccion de WAF: "))
     if not (url_to_waf.startswith('http://') or url_to_waf.startswith('https://')):
         url_to_waf = 'http://' + url_to_waf
     print url_to_waf
-    print "Detectando WAF"   
-   
+    print "Detectando WAF"
+    wafw00f.detector(url_to_waf) 
     print "\n\033[1;33mObjetivo:\033[94m " + URL  
     print color.verde + "\n[+] Injectando:\033[91m vectores\033[94m...\n" + color.blanco
     compaXSS = empanada(URL) 
