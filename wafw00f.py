@@ -120,7 +120,7 @@ class WafW00F(waftoolsengine):
         reason = ''
         reasons = ['Blocking is being done at connection/packet level.',
                    'La cabecera del servidor es diferente cuando un ataque es detectado',
-                   'The server returned a different response code when a string trigged the blacklist.',
+                   'El servidor devuelve un código de respuesta diferentes provocadopor  una cadena de lista negra',
                    'Se cerro la conexion para una solicitud normal',
                    'La cabecera de conexion fue mezclada.'
                    ]
@@ -598,7 +598,7 @@ def detector(url):
     if len(waf) > 0:
         print 'El sitio %s esta detras de8 %s' % (target, ' and/or '.join( waf))
     if (findall) or len(waf) == 0:
-        print 'Generic Detection results:'          
+        print '\033[92mResultados de la detección genérica:\033[0m'          
         if attacker.genericdetect():                
             log.info('Deteccion generica: %s' % attacker.knowledge['generic']['reason'])                    
             print 'El sitio %s parece estar detras de un WAF ' % target
