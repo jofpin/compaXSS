@@ -4,7 +4,7 @@
 #       
 #         Copyright 2013 @Fr4phc0r3 - @juan_eljach
 #
-#   <fraphcore@hotmail.com>    <juan_eljach10@hotmail.com>
+#   <fraphcore@gmail.com>    <juan_eljach10@hotmail.com>
 #
 # Update: http://bugone.tk/compaXSS
 #
