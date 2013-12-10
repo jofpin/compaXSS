@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # wafw00f - Web Application Firewall Detection Tool
 # by Sandro Gauci - enablesecurity.com (c) 2009
 #  and Wendel G. Henrique - Trustwave 2009
@@ -605,4 +606,3 @@ def detector(url):
         else:
             print '\033[91mNo se detecto WAF\033[0m'
     print '\033[94mNumero de soliitudes:\033[1;33m %s \033[0m' % attacker.requestnumber
-
