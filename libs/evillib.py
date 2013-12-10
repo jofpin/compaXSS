@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import re
 import sys
 import httplib
@@ -155,7 +156,7 @@ def oururlparse(target):
     
 def modifyurl(path,modfunc,log):
     path = path
-    log.debug('path is currently %s' % path)
+    log.debug('Ruta está actualmente %s' % path)
     #s = re.search('(\[.*?\])',path)
     for m in re.findall('(\[.*?\])',path):
         ourstr = m[1:-1]
@@ -163,11 +164,11 @@ def modifyurl(path,modfunc,log):
         log.debug('String was %s' % ourstr)
         log.debug('String became %s' % newstr)
         path = path.replace(m,newstr)
-    log.debug('the path is now %s' % path)
+    log.debug('El camino está ahora %s' % path)
     return path
 
 def modifypath(path,newstrs,log,encode=True):    
-    log.debug('path is currently %s' % path)
+    log.debug('Ruta está actualmente %s' % path)
     for m in re.findall('(\[.*?\])',path):
         ourstr = m[1:-1]
         for newstr in newstrs:
@@ -252,7 +253,7 @@ class waftoolsengine:
         if comingfromredir:
             self.redirectno += 1
             if self.redirectno >= 5:
-                self.log.error('We received way too many redirects.. stopping that')
+                self.log.error('Hemos recibido demasiados redireccionamientos detener esa..')
                 followredirect=False
         else:
             self.redirectno = 0
@@ -272,7 +273,7 @@ class waftoolsengine:
         k = str([method,path,headers])
         if usecache:                
             if self.cachedresponses.has_key(k):
-                self.log.debug('Using cached version of %s, %s' % (method,path))
+                self.log.debug('Con versión en caché de %s, %s' % (method,path))
                 return self.cachedresponses[k]
             else:
                 self.log.debug('%s not found in %s' % (k,self.cachedresponses.keys()))
@@ -293,7 +294,7 @@ class waftoolsengine:
             self.log.info('Sending %s %s' % (method,path))
             h.request(method,path,headers=headers)
         except socket.error:
-            self.log.warn('Could not initialize connection to %s' % self.target)
+            self.log.warn('No se puede iniciar la conexión a %s' % self.target)
             return
         self.requestnumber += 1
         try:
@@ -302,7 +303,7 @@ class waftoolsengine:
             h.close()
             r = response, responsebody
         except (socket.error,socket.timeout,httplib.BadStatusLine):
-            self.log.warn('Hey.. they closed our connection!')
+            self.log.warn('Se Ha cerrado nuestra conexión!')
             r = None
         if cacheresponse:
             self.cachedresponses[k] = r
@@ -311,7 +312,7 @@ class waftoolsengine:
                 if followredirect:                    
                     if response.getheader('location'):                        
                         newloc = response.getheader('location')                                            
-                        self.log.info('Redirected to %s' % newloc)                    
+                        self.log.info('Se redirigió a %s' % newloc)                    
                         pret = oururlparse(newloc)
                         if pret is not None:
                             (target,port,path,query,ssl) = pret                            
@@ -326,14 +327,14 @@ class waftoolsengine:
                                 r = self.request(method,path,usecache,cacheresponse,
                                              headers,comingfromredir=True)
                             else:                                
-                                self.log.warn('Tried to redirect to a different server %s' % newloc)
+                                self.log.warn('Trató de redirigir a un servidor diferente %s' % newloc)
                         else:
-                            self.log.warn('%s is not a well formatted url' % response.getheader('location'))
+                            self.log.warn('%s No es un buen formato url' % response.getheader('location'))
         return r
 
 
     def querycrawler(self,path=None,curdepth=0,maxdepth=1):
-        self.log.debug('Crawler is visiting %s' % path)
+        self.log.debug('Crawler está visitando %s' % path)
         localcrawlpaths = list()        
         if curdepth > maxdepth:
             self.log.info('maximum depth %s reached' % maxdepth)
@@ -345,7 +346,7 @@ class waftoolsengine:
         try:
             soup=BeautifulSoup(responsebody)
         except:
-            self.log.warn('could not parse the response body')
+            self.log.warn('No se ha podido analizar el cuerpo de la respuesta')
             return
         tags = soup('a')
         for tag in tags:
@@ -355,10 +356,10 @@ class waftoolsengine:
                     tmpu = urlparse(href)                    
                     if (tmpu[1] != '') and (self.target != tmpu[1]):
                         # not on the same domain name .. ignore
-                        self.log.debug('Ignoring link because it is not on the same site %s' % href)
+                        self.log.debug('Ignorando link porque no está en el mismo sitio %s' % href)
                         continue
                     if tmpu[0] not in ['http','https','']:
-                        self.log.debug('Ignoring link because it is not an http uri %s' % href)
+                        self.log.debug('Ignorando link porque no se trata de un url de http %s' % href)
                         continue
                     path = tmpu[2]
                     if not path.startswith('/'):
@@ -382,7 +383,7 @@ class waftoolsengine:
 
 
 def scrambledheader(header):
-    c = 'connection'
+    c = 'conexión'
     if len(header) != len(c):
         return False
     if header == c:
@@ -391,4 +392,3 @@ def scrambledheader(header):
         if c.count(character) != header.count(character):
             return False
     return True
-
