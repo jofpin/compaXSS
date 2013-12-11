@@ -11,6 +11,6 @@ Example: python compaxss.py --url https://support.snapchat.com/login?next=vector
 
 ## Developers
 
-* Fraph - [@Fr4phc0r3](https://twitter.com/Fr4phc0r3)
-* Juan Eljach -[@juan_eljach](https://twitter.com/juan_eljach)
+* José Pino - [@Fr4phc0r3](https://twitter.com/Fr4phc0r3)
+* Juan Eljach - [@juan_eljach](https://twitter.com/juan_eljach)
 
