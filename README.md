@@ -1,4 +1,5 @@
-CompaXSS https://sourcegraph.com/api/repos/github.com/Fraph/compaXSS/counters/views-24h.png
+CompaXSS 
+[![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/Fraph/compaXSS/counters/views-24h.png)](https://sourcegraph.com/github.com/Fraph/compaXSS)
 =======
 
 Bypass XSS Reflected Cross-site scripting
