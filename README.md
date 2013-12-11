@@ -1,14 +1,13 @@
 # CompaXSS
-
 [![Total views](https://sourcegraph.com/api/repos/github.com/Fraph/compaXSS/counters/views.png)](https://sourcegraph.com/github.com/Fraph/compaXSS)
 =======
 Bypass XSS Reflected Cross-site scripting
 
-
-
 =======
 
+```
 Example: python compaxss.py --url https://support.snapchat.com/login?next=vector
+```
 
 ## Developers
 
