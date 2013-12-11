@@ -1,6 +1,5 @@
 # CompaXSS
 [![Total views](https://sourcegraph.com/api/repos/github.com/Fraph/compaXSS/counters/views.png)](https://sourcegraph.com/github.com/Fraph/compaXSS)
-<img align="right" height="300" src="http://bugone.tk/assets/img/logo.png">
 
 Bypass XSS Reflected Cross-site scripting
 
