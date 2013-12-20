@@ -14,3 +14,7 @@ Example: python compaxss.py --url https://support.snapchat.com/login?next=vector
 * José Pino - [@Fr4phc0r3](https://twitter.com/Fr4phc0r3)
 * Juan Eljach - [@juan_eljach](https://twitter.com/juan_eljach)
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Fraph/compaxss/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
