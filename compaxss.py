@@ -6,7 +6,6 @@
 #
 #   <fraphcore@hotmail.com>    <juan_eljach10@hotmail.com>
 #
-# Update: http://bugone.tk/compaXSS
 #
 ######################
 import os            #
