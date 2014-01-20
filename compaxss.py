@@ -7,6 +7,7 @@
 #   <fraphcore@hotmail.com>    <juan_eljach10@hotmail.com>
 #
 #
+#
 ######################
 import os            #
 import sys           #
@@ -390,8 +391,7 @@ def datosHTML():
             if(not found):
                 payload = ""
                 print color.rojo + "CONSEJO: " + color.blanco + "Verifica manualmente para comprobar la ejecucion"
-            
-    
+              
     if(payload):
         if(payload not in listavacia):
             listavacia.append(payload)
@@ -399,7 +399,7 @@ def datosHTML():
         print payload
         print "\033[1;33mBypasseado:\033[0m " + URL.replace(keyword, urllib.quote_plus(payload))
         
-#Clase HTMLcompa conexion con las comprobacion con los Datos
+#Clase HTMLcompa conexion con la comprobacion de Datos
 class HTMLcompa(HTMLParser):
     def handle_comment(self, data):
         global parser
