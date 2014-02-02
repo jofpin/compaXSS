@@ -1,5 +1,5 @@
 # CompaXSS
-[![Total views](https://sourcegraph.com/api/repos/github.com/Fraph/compaXSS/counters/views.png)](https://sourcegraph.com/github.com/Fraph/compaXSS)
+[![Total views](https://sourcegraph.com/api/repos/github.com/mrjopino/compaXSS/counters/views.png)](https://sourcegraph.com/github.com/mrjopino/compaXSS)
 
 Bypass XSS Reflected Cross-site scripting
 
