@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 #
 #       
-#         Copyright 2013 @Fr4phc0r3 - @juan_eljach
+#         Copyright 2013 @mrjopino - @juan_eljach
 #
-#   <fraphcore@hotmail.com>    <juan_eljach10@hotmail.com>
+#   <mrjopino@gmail.com>    <juan_eljach10@hotmail.com>
 #
 #
 #
@@ -49,7 +49,7 @@ else:
     pass
 print color.azul + "\t\t#######################|>\033[1;33mCompaXSS\033[94m<|#########################" + color.blanco
 print color.azul + "\t\t#                       Developers                         #" + color.blanco
-print color.azul + "\t\t##\033[91m+\033[94m=>             @Fr4phc0r3 - @juan_eljach            <=\033[91m+\033[94m##" + color.blanco
+print color.azul + "\t\t##\033[91m+\033[94m=>             @mrjopino - @juan_eljach            <=\033[91m+\033[94m##" + color.blanco
 print color.azul + "\t\t##\033[91m+\033[94m>\033[92m                        XSS                         \033[94m<\033[91m+\033[94m##" + color.blanco
 print color.azul + "\t\t##\033[91m+\033[94m>                       V1.0                         <\033[91m+\033[94m##" + color.blanco
 print color.azul + "\t\t##\033[91m+\033[94m>         ################################           <\033[91m+\033[94m##" + color.blanco
